@@ -38,7 +38,7 @@
 }
 
 .jumbotron .container {
-  max-width: 40rem;
+  max-width: 50rem;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   text-shadow: 1px 1px 2px grey;
@@ -154,7 +154,10 @@ h5 {
 img {
   max-width: 100%;
 }
-
+.contenedor {
+  max-width: 80rem;
+  margin: 0 auto;
+}
 /* Productos */
 .centrado {
   display: flex;
@@ -168,6 +171,10 @@ img {
 }
 .cantidad-vendidos {
   text-align: right;
+}
+.input-precio {
+  max-width: 5rem;
+  max-height: 1.5rem;
 }
 
 /* Login */

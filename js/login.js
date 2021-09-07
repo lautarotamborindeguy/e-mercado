@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             inputUser.classList.add("bg-success")
             inputPassword.classList.add("bg-success")
+
+            localStorage.setItem("Nombre", inputUser.value);
+            
             window.location = "inicio.html"
         }
     })

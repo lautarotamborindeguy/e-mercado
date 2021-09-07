@@ -14,17 +14,88 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <nav class="site-header sticky-top py-1 bg-dark">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+    <nav class="site-header sticky-top py-1 bg-dark row align-items-center">
+      <div class="container d-flex justify-content-around col-md-10">
+        <a class="py-2 d-none d-md-inline-block" href="inicio.html">Inicio</a>
         <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
       </div>
+      <div class="col-md-2 d-flex">
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" id="mostrarUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button" id="btnIngresarPerfil">Mi Perfil</button>
+            <button class="dropdown-item" type="button" id="btnSalir">Salir</button>
+          </div>
+        </div>
+      </div>
     </nav>
-    <div class="container">
-      <div id="data">
+    <div class="contenedor row">
+      <div id="filtros" class="col-md-3 mt-4">
+        <div>
+          <h3>Precio</h3>
+          <div class="d-flex mt-2 align-items-center">
+            <input type="number" class="input-precio mr-3" placeholder="Mínimo" id="inputPrecioMin">
+            <input type="number" class="input-precio" placeholder="Máximo" id="inputPrecioMax">
+          </div> 
+          <div class="d-block mt-3 border-bottom">
+            <button type="button" id="btnFiltrarPrecios" class="btn btn-light mb-3">Filtrar</button>
+          </div>
+        </div>
+        <div>
+          <div class="col mt-3 p-0 border-bottom">
+            <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                <label class="btn btn-light active" id="sortAscPrecios" >
+                    <input type="radio" name="options" autocomplete="off" checked><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up-circle" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <circle cx="12" cy="12" r="9" />
+                      <line x1="12" y1="8" x2="8" y2="12" />
+                      <line x1="12" y1="8" x2="12" y2="16" />
+                      <line x1="16" y1="12" x2="12" y2="8" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-dollar" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />
+                      <path d="M12 3v3m0 12v3" />
+                    </svg>
+                </label>
+                <label class="btn btn-light" id="sortDescPrecios" >
+                    <input type="radio" name="options" autocomplete="off"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-circle" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <circle cx="12" cy="12" r="9" />
+                      <line x1="8" y1="12" x2="12" y2="16" />
+                      <line x1="12" y1="8" x2="12" y2="16" />
+                      <line x1="16" y1="12" x2="12" y2="16" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-dollar" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />
+                      <path d="M12 3v3m0 12v3" />
+                    </svg>
+                </label>
+                <label class="btn btn-light" id="sortDescRelev" >
+                    <input type="radio" name="options" autocomplete="off"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-circle" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <circle cx="12" cy="12" r="9" />
+                      <line x1="8" y1="12" x2="12" y2="16" />
+                      <line x1="12" y1="8" x2="12" y2="16" />
+                      <line x1="16" y1="12" x2="12" y2="16" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                    </svg>
+                </label>
+            </div>
+        </div>
+        <button type="button" id="btnLimpiarFiltros" class="btn btn-light mt-3">Limpiar Filtros</button>
+        </div>        
+      </div>
+      <div id="data" class="col-md-9">
 
       </div>
     </div>

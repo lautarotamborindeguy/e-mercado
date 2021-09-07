@@ -44,4 +44,23 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  let nombreUsuario = localStorage.getItem("Nombre");
+  let mostrarUser = document.getElementById("mostrarUser");
+  
+  mostrarUser.innerHTML = mostrarUser.innerHTML + nombreUsuario
+  
+  if(document.getElementById("btnSalir")){
+    if(nombreUsuario === undefined || nombreUsuario === null){
+      window.location = "index.html"
+    }
+    document.getElementById("btnSalir").addEventListener("click", function(){
+      localStorage.removeItem("Nombre");  
+      window.location = "index.html"
+    })
+    document.getElementById("btnIngresarPerfil").addEventListener("click", function(){
+      window.location = "my-profile.html"
+    })
+  }
 });
+
+  
