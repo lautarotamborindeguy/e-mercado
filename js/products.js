@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         fetch(url)
             .then(respuesta => respuesta.json())
             .then(datos => { 
+                agregarId(datos)
                 mostrarProductos(datos, 0)
             })
         .catch(error => alert("Hubo un error: " + error));
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             fetch(url)
             .then(respuesta => respuesta.json())
             .then(datos => {
+                agregarId(datos)
                 let productosFiltrados = filtrarProductos(datos)
                 mostrarProductos(productosFiltrados, 0)
             })
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             fetch(url)
             .then(promesa => promesa.json())
             .then(datos => {
+                agregarId(datos)
                 let data = document.getElementById("data");
                 data.innerHTML = " "
                 let productosFiltrados = filtrarProductos(datos)
@@ -47,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             fetch(url)
             .then(promesa => promesa.json())
             .then(datos => {
+                agregarId(datos)
                 let data = document.getElementById("data");
                 data.innerHTML = " "
                 let productosFiltrados = filtrarProductos(datos)
@@ -61,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             fetch(url)
             .then(promesa => promesa.json())
             .then(datos => {
+                agregarId(datos)
                 let data = document.getElementById("data");
                 data.innerHTML = " "
                 let productosFiltrados = filtrarProductos(datos)
@@ -74,9 +79,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
         limpiarFiltros()
         cargarDatos(PRODUCTS_URL)
     })
+
+    
     
 });
-
+function agregarId(array){
+    for (let i = 0; i < array.length; i++) {
+      const element = array[i];
+      element.id = [i]
+    }
+}
 function filtrarProductos(array){
     var precioMinUsuario = document.getElementById("inputPrecioMin").value
     var precioMaxUsuario = document.getElementById("inputPrecioMax").value
@@ -103,38 +115,44 @@ function mostrarProductos(array, criterio){
     sortProductos(criterio, array)
     for (i = 0; i< array.length; i++ ) {                   
         let data = document.getElementById("data");
+        let product = array[i]
         data.innerHTML += `
         <div>
             <div class="centrado border rounded tarjeta-producto mb-4 mt-4">
                 <div class="row w-100 m-2">
                     <div class="col-md-4">
-                        <img src="`+ array[i].imgSrc +`" alt="Imagen del Producto" class="imagen-producto img-thumbnail">
+                        <img src="`+ product.imgSrc +`" alt="Imagen del Producto" class="imagen-producto img-thumbnail">
                     </div>
                     <div class="col-md-8">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h2 class="mt-1">
-                                `+ array[i].name +`
+                                `+ product.name +`
                             </h2>
                             <div class="d-flex justify-content-between font-weight-bold">
                                 <p class="mr-1">
-                                    `+ array[i].cost +`
+                                    `+ product.cost +`
                                 </p>
                                 <p>
-                                    `+ array[i].currency +`
+                                    `+ product.currency +`
                                 </p>
                             </div>
                         </div>
                         <p>
-                            `+ array[i].description +`
+                            `+ product.description +`
                         </p>
-                        <p class="cantidad-vendidos font-weight-light mt-4">
-                            <small>`+ array[i].soldCount +` Vendidos </small>
+                        <p class="cantidad-vendidos font-weight-light mt-2">
+                            <small>`+ product.soldCount +` Vendidos </small>
                         </p>
+                        <button id="btnVerLibros" type="button" class="btn btn-success float-right" onclick="verLibro('`+ product.id +`')">Ver Auto</button>
                     </div>
                 </div>
             </div>
         </div>`;
     }
+}
+function verLibro(id) {
+    localStorage.setItem('productId', JSON.stringify({productId: id}))
+    window.location = "product-info.html"
 }
 function limpiarFiltros(){
     document.getElementById("inputPrecioMin").value = " "
@@ -174,3 +192,6 @@ function sortProductos(criterio, array){
         )
     }
 }
+
+
+

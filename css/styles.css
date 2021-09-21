@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden;
+}
 .jumbotron,
 .card-body,
 .container,
@@ -155,9 +158,10 @@ img {
   max-width: 100%;
 }
 .contenedor {
-  max-width: 80rem;
+  max-width: 65rem;
   margin: 0 auto;
 }
+
 /* Productos */
 .centrado {
   display: flex;
@@ -184,4 +188,21 @@ img {
 .tarjeta-login {
   border-radius: 10px;
   border-style: groove;
+}
+
+/* Producto */
+.carrousel-auto {
+  max-width: 400px;
+}
+.titulo-producto {
+  font-family: "Noto Serif", serif;
+  font-weight: 800;
+}
+.descripcion-producto {
+  font-family: "Noto Serif", serif;
+  font-weight: 400;
+}
+.categoria-producto {
+  font-family: "Noto Serif", serif;
+  font-weight: 400;
 }
