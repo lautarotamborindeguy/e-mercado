@@ -7,7 +7,10 @@
     "soldCount": 52,
     "category": "Autos",
     "images": [
-        "img/prod2.jpg"
+        "img/prod2.jpg",
+        "img/prod2_2.jpg",
+        "img/prod2_3.png",
+        "img/prod2_4.jpeg"
     ],
     "relatedProducts": [
         1,

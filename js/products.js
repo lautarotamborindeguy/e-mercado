@@ -151,7 +151,7 @@ function mostrarProductos(array, criterio){
     }
 }
 function verLibro(id) {
-    localStorage.setItem('productId', JSON.stringify({productId: id}))
+    localStorage.setItem('productId', id)
     window.location = "product-info.html"
 }
 function limpiarFiltros(){

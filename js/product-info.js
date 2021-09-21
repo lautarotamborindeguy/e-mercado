@@ -7,10 +7,13 @@ document.addEventListener("DOMContentLoaded", function(e){
         fetch(url)
        .then(response => response.json())
        .then(datos => {
-            mostrarProducto(datos)
+           console.log(datos.id)
+            if(datos.id == localStorage.getItem("productId")){
+                mostrarProducto(datos)
+            }
         })
     }
-    muestraProductos(PRODUCT_INFO_URL)
+    muestraProductos(PRODUCT_INFO_FIAT)
 
     function muestraComentarios(url){
         fetch(url)
@@ -22,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(e){
            }
         })
     }
-muestraComentarios(PRODUCT_INFO_COMMENTS_URL)
+    muestraComentarios(PRODUCT_INFO_COMMENTS_URL)
     
        
 })
