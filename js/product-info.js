@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             }
         })
     }
-    muestraProductos(PRODUCT_INFO_FIAT)
+    muestraProductos(PRODUCT_INFO_CHEVROLET)
 
     function muestraComentarios(url){
         fetch(url)

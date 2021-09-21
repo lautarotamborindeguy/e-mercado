@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 function agregarId(array){
     for (let i = 0; i < array.length; i++) {
       const element = array[i];
-      element.id = [i]
+      element.id = [i + 1]
     }
 }
 function filtrarProductos(array){
