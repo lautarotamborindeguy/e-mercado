@@ -7,13 +7,45 @@ document.addEventListener("DOMContentLoaded", function(e){
         fetch(url)
        .then(response => response.json())
        .then(datos => {
-           console.log(datos.id)
             if(datos.id == localStorage.getItem("productId")){
                 mostrarProducto(datos)
             }
         })
     }
     muestraProductos(PRODUCT_INFO_CHEVROLET)
+
+    function muestraProductos(url){
+        fetch(url)
+       .then(response => response.json())
+       .then(datos => {
+            if(datos.id == localStorage.getItem("productId")){
+                mostrarProducto(datos)
+            }
+        })
+    }
+    muestraProductos(PRODUCT_INFO_FIAT)
+
+    function muestraProductos(url){
+        fetch(url)
+       .then(response => response.json())
+       .then(datos => {
+            if(datos.id == localStorage.getItem("productId")){
+                mostrarProducto(datos)
+            }
+        })
+    }
+    muestraProductos(PRODUCT_INFO_SUSUKI)
+
+    function muestraProductos(url){
+        fetch(url)
+       .then(response => response.json())
+       .then(datos => {
+            if(datos.id == localStorage.getItem("productId")){
+                mostrarProducto(datos)
+            }
+        })
+    }
+    muestraProductos(PRODUCT_INFO_PEUGEOT)
 
     function muestraComentarios(url){
         fetch(url)
