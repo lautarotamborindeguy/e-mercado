@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     muestraComentarios(PRODUCT_INFO_COMMENTS_URL)
     
     function obtenerProductoRel(valor){
+        console.log(valor)
         fetch(PRODUCTS_URL)
         .then(promesa => promesa.json())
         .then(datos => {
