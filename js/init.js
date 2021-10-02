@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("btnIngresarPerfil").addEventListener("click", function(){
       window.location = "my-profile.html"
     })
+    document.getElementById("btnIngresarCarrito").addEventListener("click", function(){
+      window.location = "cart.html"
+    })
   }
 });
 
