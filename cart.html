@@ -33,7 +33,7 @@
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="body-carrito">
   <nav class="site-header sticky-top py-1 bg-dark row align-items-center">
     <div class="container d-flex justify-content-around col-md-10">
       <a class="py-2 d-none d-md-inline-block" href="inicio.html">Inicio</a>
@@ -53,14 +53,145 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
+  
+    <div class="container mt-4 text-center bg-white bordes-carrito mb-5">
+      <div class="border-bottom row titulos-carrito pt-2">
+        <div class="col-md-2">
+          <h4 class="ml-4">Imagen</h4>
+        </div>
+        <div class="col-md-6">
+          <h4 class="text-left ml-4">Nombre</h4>
+        </div>
+        <div class="col-md-4 d-flex">
+          <h4 class="mr-5">Cantidad</h4>
+          <h4>Costo</h4>
+        </div>
+      </div>
+      <div id="espCarrito" class="pt-1">
+
+      </div>
+      <div class="mb-1 select-envio container-fluid mt-3 border-bottom">
+        <h3>Método de Envío</h3>
+        <form class="mt-3">
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="inputAddress">Calle</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="18 de Julio">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputNumCasa">Número</label>
+              <input type="number" class="form-control" id="inputNumCasa" placeholder="333">
+            </div>
+            <div class="form-group col-md-5">
+              <label for="inputEsq">Esquina</label>
+              <input type="text" class="form-control" id="inputEsq" placeholder="Cassinoni">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputCity">Ciudad</label>
+              <input type="text" class="form-control" id="inputCity" placeholder="Montevideo">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">Departamento</label>
+              <input type="text" id="inputState" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCountry">País</label>
+              <input type="text" id="inputCountry" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputMetodoEnvio">Método de Envío</label>
+            <select id="inputMetodoEnvio" class="form-control" onchange="costoEnvio()">
+              <option value="Premium" selected>Premium</option>
+              <option value="Express">Express</option>
+              <option value="Standard">Standard</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="mt-3">
+        <h3>Costos y Método de Pago</h3>
+        <table border="1" class="mt-2">
+          <tbody>
+            <tr class="p-3">
+              <td>Costos</td>
+              <th class="p-2">USD</th>
+              <th class="p-2">UYU</th>
+            </tr>
+            <tr class="p-3">
+              <th>SubTotal</th>
+              <td id="costoSubtotalUSD" class="p-2"></td>
+              <td id="costoSubTotalUYU" class="p-2"></td>
+            </tr>
+            <tr class="p-3">
+              <th class="p-2">Costo de Envío</th>
+              <td id="espCostoEnvioUSD" class="p-2"></td>
+              <td id="espCostoEnvio" class="p-2"></td>
+            </tr>
+            <tr class="p-3 bg-success">
+              <th>Total a pagar</th>
+              <td id="espCostoTotalUSD" class="p-2"></td>
+              <td id="espCostoTotal" class="p-2"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModalCenter">
+          Ver Método de Pago
+        </button>
+        <div class="alert alert-success d-none" role="alert" id="alertCompraRealizada">
+          Felicitaciones! La compra ha sido realizada con éxito.
+        </div>
+        <div class="alert alert-danger d-none" role="alert" id="alertDebeCompletarCampos">
+          La compra no se pudo concretar. Usted debe completar todos los campos!
+        </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Método de Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <select id="inputMetodoPago" class="form-control" onchange="metodoDePago()">
+                    <option value="Credito" selected>Tarjeta de Crédito</option>
+                    <option value="Bancaria">Transferencia Bancaria</option>
+                  </select>
+                </div>
+                <form id="pagoTarjeta">
+                  <div class="form-group">
+                    <label for="numTarjeta">Número de Tarjeta</label>
+                    <input type="number" id="numTarjeta" class="form-control">
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="codigoTarjeta">Código de Seguridad</label>
+                      <input type="number" id="codigoTarjeta" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="vencimientoTarjeta">Vencimiento</label>
+                      <input type="text" id="vencimientoTarjeta" class="form-control" placeholder="AA/MM">
+                    </div>
+                  </div>
+                </form>
+                <form class="d-none" id="pagoBancaria">
+                  <div class="form-group">
+                    <label for="numCuenta">Número de Cuenta</label>
+                    <input type="number" id="numCuenta" class="form-control">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="validacionFormulario()" data-dismiss="modal">Realizar Pago y Finalizar Compra</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -74,6 +205,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  
 </body>
 
 </html>

@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     muestraComentarios(PRODUCT_INFO_COMMENTS_URL)
     
     function obtenerProductoRel(valor){
-        console.log(valor)
+        
         fetch(PRODUCTS_URL)
         .then(promesa => promesa.json())
         .then(datos => {
@@ -146,13 +146,13 @@ function mostrarProductoRel(object){
     let data = document.getElementById("espProductosRelacionados");
     data.innerHTML += `
     <div>
-            <div class="centrado border rounded tarjeta-producto mb-4 mt-4">
-                <div class="row w-100 m-2">
-                    <div class="col-md-4">
-                        <img src="`+ object.imgSrc +`" alt="Imagen del objecto" class="imagen-objecto img-thumbnail">
+            <div class="centrado border rounded tarjeta-producto mb-4 mt-4 mr-3 producto-relacionado">
+                <div class=" w-100 p-2">
+                    <div>
+                        <img src="`+ object.imgSrc +`" alt="Imagen del objeto" class="imagen-objecto">
                     </div>
-                    <div class="col-md-8">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-1">
                             <h2 class="mt-1">
                                 `+ object.name +`
                             </h2>

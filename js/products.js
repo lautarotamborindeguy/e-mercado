@@ -28,7 +28,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
         mostrarProductosFiltrados(PRODUCTS_URL)
     })  
     
-    
+    document.getElementById("buscadorProducto").addEventListener("input", function(){
+        function mostrarProductosFiltrados(url){
+            document.getElementById("data").innerHTML = "";
+            fetch(url)
+            .then(respuesta => respuesta.json())
+            .then(datos => {
+                agregarId(datos)
+                let productosFiltrados = filtrarProductos(datos)
+                mostrarProductos(productosFiltrados, 0)
+            })
+        }
+        mostrarProductosFiltrados(PRODUCTS_URL)
+    })
     
     document.getElementById("sortAscPrecios").addEventListener("click", function(){
         function productosOrdenDescPrecio (url){
@@ -107,7 +119,7 @@ function filtrarProductos(array){
 
 
     const productosFiltrados = array.filter(producto => ((precioMinUsuario == undefined) || (precioMinUsuario != undefined && precioMinUsuario <= producto.cost)) && ((precioMaxUsuario == undefined) || (precioMaxUsuario != undefined && precioMaxUsuario >= producto.cost)))
-    
+
     return(productosFiltrados)         
 }
 
@@ -119,16 +131,17 @@ function mostrarProductos(array, criterio){
         data.innerHTML += `
         <div>
             <div class="centrado border rounded tarjeta-producto mb-4 mt-4">
-                <div class="row w-100 m-2">
-                    <div class="col-md-4">
-                        <img src="`+ product.imgSrc +`" alt="Imagen del Producto" class="imagen-producto img-thumbnail">
+                <div>
+                    <div>
+                        <img src="`+ product.imgSrc +`" alt="Imagen del Producto">
                     </div>
-                    <div class="col-md-8">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
+                    
+                    <div class="p-2">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
                             <h2 class="mt-1">
                                 `+ product.name +`
                             </h2>
-                            <div class="d-flex justify-content-between font-weight-bold">
+                            <div class="d-flex font-weight-bold">
                                 <p class="mr-1">
                                     `+ product.cost +`
                                 </p>
@@ -137,13 +150,15 @@ function mostrarProductos(array, criterio){
                                 </p>
                             </div>
                         </div>
+                        <p class="font-weight-light">
+                            <small>`+ product.soldCount +` Vendidos </small>
+                        </p>
                         <p>
                             `+ product.description +`
                         </p>
-                        <p class="cantidad-vendidos font-weight-light mt-2">
-                            <small>`+ product.soldCount +` Vendidos </small>
-                        </p>
-                        <button id="btnVerLibros" type="button" class="btn btn-success float-right" onclick="verLibro('`+ product.id +`')">Ver Auto</button>
+                        <div class="d-flex justify-content-center">
+                            <button id="btnVerLibros" type="button" class="btn btn-primary" onclick="verLibro('`+ product.id +`')">Ver Auto</button>
+                        </div>
                     </div>
                 </div>
             </div>
