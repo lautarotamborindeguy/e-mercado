@@ -215,7 +215,7 @@ img {
     grid-column-gap: 10px;
   }
   .tarjeta-producto {
-    height: 500px;
+    height: auto;
   }
 }
 
